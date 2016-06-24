@@ -3,6 +3,7 @@ package de.hsbochum.fbg.kswe.geoinfo.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import java.math.BigDecimal;
 
 /**
  *
@@ -19,11 +20,19 @@ public class JsonWeatherEncoder {
         cityNode.put("country", obj.getCity().getCountry());
         node.set("city", cityNode);
         
+        
+        
         ObjectNode weatherNode = mapper.createObjectNode();
         ObjectNode tempNode = mapper.createObjectNode();
         tempNode.put("value", obj.getTemp());
         tempNode.put("unit", "C");
         weatherNode.set("temperatur", tempNode);
+        
+        //ObjectNode phenomena = mapper.createObjectNode();
+        //phenomena.set("phenomena", weatherNode);
+        node.set("phenomena", weatherNode);
+        
+        System.out.println(node.toString());
         
         return node.toString();
     }
