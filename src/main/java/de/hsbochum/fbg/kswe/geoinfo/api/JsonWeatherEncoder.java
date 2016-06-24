@@ -13,6 +13,7 @@ public class JsonWeatherEncoder {
     public String encode(Weather obj) {
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode node = mapper.createObjectNode();
+     
         
         ObjectNode cityNode = mapper.createObjectNode();
         cityNode.put("name", obj.getCity().getCity());
@@ -24,8 +25,9 @@ public class JsonWeatherEncoder {
         tempNode.put("value", obj.getTemp());
         tempNode.put("unit", "C");
         weatherNode.set("temperatur", tempNode);
-        
+        node.set("phenomena", weatherNode);
         return node.toString();
+        
     }
     
 }
